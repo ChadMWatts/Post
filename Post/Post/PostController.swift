@@ -11,14 +11,14 @@ import Foundation
 class PostController {
     
     static let baseURL = NSURL(string: "https://devmtn-post.firebaseio.com/posts/")
-    static let endpoint = baseURL?.URLByAppendingPathExtrension("json")
+    static let endpoint = baseURL?.URLByAppendingPathExtension("json")
     
     weak var delegate: PostControllerDelegate?
     
     var posts: [Post] = [] {
         
         didSet {
-            delegate?.postsupdated(posts)
+            delegate?.postsUpdated(posts)
         }
     }
     
@@ -26,11 +26,11 @@ class PostController {
         
     }
     
-    func addPost(username: String, text: String) {
+   static func addPost(username: String, text: String) {
         
         let post = Post(username: username, text: text)
         
-        guard let requestURL = post.endpoint else { faltalError("URL optional is nil") }
+        guard let requestURL = post.endpoint else { fatalError("URL optional is nil") }
         
         NetworkController.performRequestForURL(requestURL, httpMethod: .Put, body: post.jsonData) { (data, error) in
             let resposeDataString = NSString(data: data!, encoding: NSUTF8StringEncoding) ?? ""
@@ -52,16 +52,15 @@ class PostController {
 
 func fetchPosts(reset reset: Bool = true, completion: ((newPosts: [Post]) -> Void)? = nil) {
     
-    guard let requestURL = PostController.endpoint else { faltalError("Post Endpint url failed") }
-    let queryEndInterval = reset ? NSDate().timeIntervalSince1970 : post.last.queryTimeStamp ?? NSDate().timeIntervalSince1970
+    guard let requestURL = PostController.endpoint else { fatalError("Post Endpint url failed") }
+    let queryEndInterval = reset ? NSDate().timeIntervalSince1970: post.last?.queryTimeStamp ?? NSDate().timeIntervalSince1970
     
     //TODO: update to query timestamp
     
-    let urlParameters = [
-        "orderBy": "\"timestamp\""
-        "endAt": "\(queryEndInterval)"
-        "limitToLast": "15",
-    ]
+    let urlParameters =
+    ["orderBy": "\"timestamp\"",
+    "endAt": "\(queryEndInterval)",
+    "limitToLast": "15",]
     
     NetworkController.performRequestForURL(requestURL, httpMethod: .Get, urlParameters:  urlParameters) { (data, error) in
         let responseDataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
@@ -98,6 +97,11 @@ protocol PostControllerDelegate: class {
     
     func postsUpdated(posts: [Post])
 }
+
+
+
+
+
 
 
 

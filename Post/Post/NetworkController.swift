@@ -19,7 +19,7 @@ class NetworkController {
         case Delete = "DELETE"
     }
     
-    static func performRequestForURL(url: NSURL, httpMethod: HTTPMethod, urlParameters: [String: String]? = nil, body: NSData?) {
+    static func performRequestForURL(url: NSURL, httpMethod: HTTPMethod, urlParameters: [String: String]? = nil, body: NSData?, completion: ((data: NSData?, error: NSError?) -> void?) {
         
         let requestURL = urlFromURLParameters(url, urlParameters: urlParameters)
         
@@ -51,3 +51,9 @@ class NetworkController {
         }
     }
 }
+
+
+
+
+
+

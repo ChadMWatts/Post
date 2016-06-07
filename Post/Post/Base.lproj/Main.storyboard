@@ -28,7 +28,13 @@
                             <outlet property="delegate" destination="paW-la-GCQ" id="LaA-WS-zBt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="NfY-yl-IO8"/>
+                    <navigationItem key="navigationItem" id="NfY-yl-IO8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="s3w-zg-HW6">
+                            <connections>
+                                <action selector="addPostTapped:" destination="paW-la-GCQ" id="bv9-fY-tLd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwB-Ep-okI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
