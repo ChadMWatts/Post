@@ -37,7 +37,7 @@ class NetworkController {
         }
         
         dataTask.resume()
-    }
+    })
     
     static func urlFromURLParameters(url: NSURL, urlParameters: [String: String]?) -> NSURL {
         

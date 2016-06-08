@@ -28,7 +28,7 @@ class PostController {
     
    static func addPost(username: String, text: String) {
         
-        let post = Post(username: username, text: text)
+        let posts = Post(username: username, text: text)
         
         guard let requestURL = post.endpoint else { fatalError("URL optional is nil") }
         
@@ -53,7 +53,7 @@ class PostController {
 func fetchPosts(reset reset: Bool = true, completion: ((newPosts: [Post]) -> Void)? = nil) {
     
     guard let requestURL = PostController.endpoint else { fatalError("Post Endpint url failed") }
-    let queryEndInterval = reset ? NSDate().timeIntervalSince1970: post.last?.queryTimeStamp ?? NSDate().timeIntervalSince1970
+    let queryEndInterval = reset ? NSDate().timeIntervalSince1970 : posts.last?.timeStamp ?? NSDate().timeIntervalSince1970
     
     //TODO: update to query timestamp
     

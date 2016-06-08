@@ -115,7 +115,7 @@ class PostListTableViewController: UITableViewController {
         
         func presentErrorAlert() {
             
-            let alertController = UIAlertController(title: "Uh oh!", message: "You may be missing information or have network connectivity issues. Please try again.", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Opps!", message: "You may be missing information or have network connectivity issues. Please try again.", preferredStyle: .Alert)
             
             let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
             
@@ -131,7 +131,19 @@ class PostListTableViewController: UITableViewController {
             
             tableView.reloadData()
             
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.sharedAPPlication().networkActivityIndicatorVisible = false
+            
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
